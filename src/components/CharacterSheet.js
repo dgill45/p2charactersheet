@@ -5,7 +5,7 @@ import ClassCard from "./ClassCard";
 function CharacterSheet({clas, onRemoveClass}){
 
     const selectedClassCard = clas.find((clas) => (
-        <ClassCard key={clas.id} clas={clas} />
+        <ClassCard key={clas.id} clas={clas} onClick ={onRemoveClass}/>
       ));
   
    

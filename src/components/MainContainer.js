@@ -5,6 +5,7 @@ import CharacterForm from "./components/CharacterForm";
 
 function MainContainer(){
     const [showForm, setShowForm] = useState(false);
+    const [changeSheet, setChangeSheet] = useState([]);
     const [clas, setClas] = useState([]);
 
   useEfect(() => {
@@ -13,30 +14,27 @@ function MainContainer(){
     .then(setClas)
   },[]);
 
-  function addClassToSheet(addedClass){
-    
-    const selectedClassCard = clas.find((clas) => (
-        <ClassCard key={clas.id} clas={clas} />
-      ));
+  function handleAddClass(addedClass) {
+    const classAddToSheet = changeSheet.find(
+        (clas) => clas.id === addedClass.id
+    );
+    if (!classAddToSheet) {
+      setChangeSheet([...changeSheet, addedClass]);
+    }
   }
 
-  function handleAddClass(newClas){
-    setClas([...clas, newClas])
 
-  }
-
-  function handleClick(){
-    setShowForm((showForm) => !showForm)
+  function handleRemoveClass(removeClass) {
+    setChangeSheet((changeSheet) =>
+      changeSheet.filter((clas) => clas.id !== removeClass.id)
+    );
   }
 
     return(
         <div>
-            <ClassCardBox onAddClass={handleAddClass}/>
-            <CharacterSheet onClick/>
+            <ClassCardBox clas = {clas} onAddClass={handleAddClass}/>
+            <CharacterSheet clas ={clas} onRemoveClass={handleRemoveClass}/>
             <CharacterForm onSubmit ={handleClick} onAddCharacter={handleAddCharacter} />
-            <ClassCardBox clas = {clas} onClick= {handleAddClass}/>
-            <CharacterForm  onSubmit = {handleSubmit} onAddCharacter={handleAddCharacter} />
-            <CharacterSheet clas ={clas} onClick={handleAddClass}/>
         </div>
     )
 }
