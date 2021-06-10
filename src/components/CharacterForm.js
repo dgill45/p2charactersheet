@@ -1,9 +1,25 @@
-import React from "react"
+import React, {useState} from "react"
 
 
-function CharacterForm(){
+function CharacterForm([clas, onAddCharacter ] ){
+    const [formData, showFormData] = useState([])
 
-    
+    function handleSubmit(event) {
+        event.preventDefault();
+
+    const newClas = [...formData, showFormData]
+
+            
+        fetch("http://localhost:3000/clas", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newClas),
+        })
+          .then((r) => r.json())
+          .then(onAddClass);
+      }
 
     return(
         <div className ="container">
