@@ -1,16 +1,18 @@
 import React from "react"
-import RaceCard from "./RaceCard"
-import ClassCard from './ClassCard'
+import ClassCard from "./ClassCard";
+
 
 function CharacterSheet(clas){
 
-    
+    const selectedClassCard = clas.find((clas) => (
+        <ClassCard key={clas.id} clas={clas} />
+      ));
 
    
     return(
         <div>
-        <h3>Character Sheet</h3>
-            
+            <h3>Character Sheet</h3>
+            {selectedClassCard}  
         </div>
     )   
 }
