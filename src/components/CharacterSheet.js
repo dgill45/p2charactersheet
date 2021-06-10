@@ -2,12 +2,14 @@ import React from "react"
 import RaceCard from "./RaceCard"
 import ClassCard from './ClassCard'
 
-function CharacterSheet(){
+function CharacterSheet(clas){
+
+    
 
    
     return(
         <div>
-        <h1>Character Sheet</h1>
+        <h3>Character Sheet</h3>
             
         </div>
     )   

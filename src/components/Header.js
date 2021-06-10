@@ -5,9 +5,9 @@ function Header(){
 
 
     return(
-        <header>
+        <h1>
             DD Character Sheet
-        </header>
+        </h1>
 
     )
 }
