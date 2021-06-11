@@ -1,8 +1,9 @@
 import React, {useState} from "react"
 
 
-function CharacterForm([clas, onAddCharacter ] ){
+function CharacterForm([newClas, onAddCharacter ] ){
     
+
     const [formData, setFormData] = useState({
         name:"",
         image: "https://unsplash.com/photos/P8LZaU52NME",

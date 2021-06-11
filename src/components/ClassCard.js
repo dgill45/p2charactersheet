@@ -26,11 +26,11 @@ function ClassCard(clas, onClick, onDeleteChar ){
 
     function handleBtnClick(e) {
         e.preventDefault()
-       /* const updateCharName = {
+        /*const updateCharName = {
           e.target.value
         };
     
-        fetch(`http://localhost:3001/clas/${id}`, {
+        fetch(`http://localhost:3000/clas/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

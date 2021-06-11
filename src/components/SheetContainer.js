@@ -33,8 +33,7 @@ function SheetContainer(){
     setNewClas([...clas, newClas]);
   }
   
- 
-    return(
+     return(
         <div>
             <ClassCardBox clas = {clas, changeSheet} onAddClass={handleAddClass}/>
             <CharacterSheet clas ={clas, changeSheet} onRemoveClass={handleRemoveClass}/>
