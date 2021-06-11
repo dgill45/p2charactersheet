@@ -3,11 +3,12 @@ import CharacterSheet from './components/CharacterSheet';
 import ClassCardBox from "./components/ClassCardBox";
 import CharacterForm from "./components/CharacterForm";
 
-function MainContainer(){
-    const [showForm, setShowForm] = useState(false);
-    const [changeSheet, setChangeSheet] = useState([]);
+function SheetContainer(){
     const [clas, setClas] = useState([]);
-
+    const [newClas, setNewClas] = useState([]);
+    const [changeSheet, setChangeSheet] = useState([]);
+    const [charName, setCharName]= useState({})
+    
   useEfect(() => {
     fetch("http://localhost:3000/clas")
     .then((r) => r.json())
@@ -23,20 +24,28 @@ function MainContainer(){
     }
   }
 
-
   function handleRemoveClass(removeClass) {
     setChangeSheet((changeSheet) =>
       changeSheet.filter((clas) => clas.id !== removeClass.id)
     );
   }
 
+  function handleAddCharacter(newClas){
+    setNewClas([...clas, newClas]);
+  }
+  
+  function handleDeleteChar(charToDelete) {
+    const updatedToys = toys.filter((toy) => toy.id !== toyToDelete.id);
+    setToys(updatedToys);
+  }
+
     return(
         <div>
-            <ClassCardBox clas = {clas} onAddClass={handleAddClass}/>
-            <CharacterSheet clas ={clas} onRemoveClass={handleRemoveClass}/>
-            <CharacterForm onSubmit ={handleClick} onAddCharacter={handleAddCharacter} />
+            <ClassCardBox clas = {clas, changeSheet} onAddClass={handleAddClass}/>
+            <CharacterSheet clas ={clas, changeSheet} onRemoveClass={handleRemoveClass}/>
+            <CharacterForm clas = {clas, newClas} onSubmit ={handleAddCharacter}  />
         </div>
     )
 }
 
-export default MainContainer;
+export default SheetContainer;
