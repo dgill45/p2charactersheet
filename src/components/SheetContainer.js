@@ -1,13 +1,12 @@
-import React, { useState, useEfect } from 'react';
-import CharacterSheet from './components/CharacterSheet';
-import ClassCardBox from "./components/ClassCardBox";
-import CharacterForm from "./components/CharacterForm";
+import React, { useState, useEfect } from "react";
+import CharacterSheet from "./CharacterSheet";
+import ClassCardBox from "./ClassCardBox";
+import CharacterForm from "./CharacterForm";
 
 function SheetContainer(){
     const [clas, setClas] = useState([]);
     const [newClas, setNewClas] = useState([]);
     const [changeSheet, setChangeSheet] = useState([]);
-    const [charName, setCharName]= useState({})
     
   useEfect(() => {
     fetch("http://localhost:3000/clas")
@@ -34,11 +33,7 @@ function SheetContainer(){
     setNewClas([...clas, newClas]);
   }
   
-  function handleDeleteChar(charToDelete) {
-    const updatedToys = toys.filter((toy) => toy.id !== toyToDelete.id);
-    setToys(updatedToys);
-  }
-
+ 
     return(
         <div>
             <ClassCardBox clas = {clas, changeSheet} onAddClass={handleAddClass}/>

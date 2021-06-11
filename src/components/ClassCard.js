@@ -1,10 +1,21 @@
 import React,{useState} from "react"
 
 
-function ClassCard(clas, onClick ,onSubmit){
+function ClassCard(clas, onClick, onDeleteChar ){
 
     const [charName, setCharName] = useState("")
 
+    function handleDeleteChar() {
+        fetch(`http://localhost:3000/clas/${id}`, {
+          method: "DELETE",
+        })
+          .then((r) => r.json())
+          .then(() => {
+            onDeleteChar();
+          });
+      }
+    
+    
     function handleClick() {
           onClick(clas);
         }
@@ -36,7 +47,8 @@ function ClassCard(clas, onClick ,onSubmit){
             <h3>{clas.name}</h3>
             <img src ={clas.image} alt = {clas.name}/>
             <p>{clas.desc}</p>
-            <button onClick = {handleClick}>Add Class</button>
+            <button className = "add-class" onClick = {handleClick}>Add Class</button>
+            <button className = "delete-character/class" onDeleteChar = {handleDeleteChar}>Delete Character/Class</button>
             <form onSubmit = {handleBtnClick}>
                 <input onChange ={handleChange} type = "text" name = "name" value ={clas.charName}></input>
                 <button type = "submit"  value = "Submit" ></button>
