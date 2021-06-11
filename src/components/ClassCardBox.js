@@ -1,10 +1,11 @@
 import React from "react"
 import ClassCard from "./ClassCard"
 
-function ClassCardBox({clas, onAddClass}){
+function ClassCardBox({clas, onAddClass, onDeleteChar}){
+
 
     const classCards= clas.map((clas) =>{
-        <ClassCard key = {clas.id} onClick={onAddClass}
+       return <ClassCard key = {clas.id} onClick={onAddClass} onDeleteChar={onDeleteChar}
             clas={clas} />          
     })
     

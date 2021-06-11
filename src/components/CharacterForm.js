@@ -1,13 +1,14 @@
 import React, {useState} from "react"
 
 
-function CharacterForm([newClas, onAddCharacter ] ){
+function CharacterForm({newClas, onAddCharacter }){
     
 
     const [formData, setFormData] = useState({
         name:"",
         image: "https://unsplash.com/photos/P8LZaU52NME",
-        desc: ""
+        desc: "",
+        charName: ""
     })
 
     function handleChange(event){
@@ -22,28 +23,25 @@ function CharacterForm([newClas, onAddCharacter ] ){
     function handleSubmit(event) {
         event.preventDefault();
 
-    const newClas = [...formData, setFormData]
-
-            
-        fetch("http://localhost:3000/clas", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newClas),
-        })
-          .then((r) => r.json())
-          .then(setFormData);
+     onAddCharacter(formData)
+     setFormData({
+        name:"",
+        image: "https://unsplash.com/photos/P8LZaU52NME",
+        desc: "",
+        charName: ""
+    })        
+       
       }
 
     return(
         <div className ="container">
-            <form onSubmit={handleSubmit} classname ="add-Class">
+            <form onSubmit={handleSubmit} className ="add-Class">
                 <h3>Create a New Character</h3>
-                <input type ="text" name = "name" onChange = {handleChange} value ={charName} placeholder="Name your character"></input>
-                <input type ="text" name = "name" onChange = {handleChange} value ={formData.name} placeholder="Enter your character's Class"></input>
-                <img src = {formData.image} defaultValue ={formData.image} ></img>
-                <input type ="submit" name ="submit" value="Create New Character" className="submit" onAddCharacter={handlechange}></input>
+                <input type ="text" name = "charName" onChange = {handleChange} value ={formData.charName} placeholder="Name your character"/>
+                <input type ="text" name = "name" onChange = {handleChange} value ={formData.name} placeholder="Enter your character's Class"/>
+                <input type ="text" name = "image" onChange = {handleChange} value = {formData.image} placeholder ="image url"></input>
+                <input type ="text" name = "desc" onChange = {handleChange } value = {formData.desc} placeholder = "description"></input>
+                <input type ="submit" name ="submit" value="Create New Character" className="submit" />
             </form>
         </div>
     )

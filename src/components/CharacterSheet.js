@@ -1,23 +1,28 @@
-import React from "react"
+import React, {useState} from "react"
 import ClassCard from "./ClassCard";
 
 
-function CharacterSheet({clas, onRemoveClass, onChange}){
-    const [chararcterName, setCharacterName] = useState("")
+function CharacterSheet({clas, onRemoveClass,}){
+    const [characterName, setCharacterName] = useState("")
 
-    const selectedClassCard = clas.find((clas) => (
-        <ClassCard key={clas.id} clas={clas} onClick ={onRemoveClass}/>
-      ));
   
+    const selectedClass = clas.find((clas) => (
+        clas.charName === characterName.toLowerCase()
+      ));
+
+    function renderSelectedCard(){
+        return <ClassCard key={selectedClass.id} clas={selectedClass} onClick ={onRemoveClass}/>
+    }
+
     function handleCharUpdate(e){
         setCharacterName((e.target.value))
     }   
     return(
         <div>
             <h3>Character Sheet</h3>
-            {selectedClassCard}  
-            <input type ="text" name = "name" value ={chararcterName} onChange = {handleCharUpdate}></input>
-            <input type = "submit" name = "name"  >Delete your character</input>
+            {characterName && renderSelectedCard()}  
+            <input type ="text" name = "name" value ={characterName} onChange = {handleCharUpdate} />
+            <button type = "submit" name = "name"  >Delete your character</button>
         </div>
     )   
 }

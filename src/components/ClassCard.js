@@ -1,21 +1,10 @@
 import React,{useState} from "react"
 
 
-function ClassCard(clas, onClick, onDeleteChar ){
+function ClassCard({clas, onClick, onDeleteChar} ){
 
     const [charName, setCharName] = useState("")
-
-    function handleDeleteChar() {
-        fetch(`http://localhost:3000/clas/${id}`, {
-          method: "DELETE",
-        })
-          .then((r) => r.json())
-          .then(() => {
-            onDeleteChar();
-          });
-      }
-    
-    
+        
     function handleClick() {
           onClick(clas);
         }
@@ -24,34 +13,23 @@ function ClassCard(clas, onClick, onDeleteChar ){
         setCharName((e.target.value))
     }
 
-    function handleBtnClick(e) {
-        e.preventDefault()
-        /*const updateCharName = {
-          e.target.value
-        };
+    function handleDeleteChar(){
+        onDeleteChar(clas.id)
+    }
+
     
-        fetch(`http://localhost:3000/clas/${id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updateObj),
-        })
-          .then((r) => r.json())
-          .then(onSubmit);*/
-      }
 
     return (
                 
         <div className="card" >
             <h3>{clas.name}</h3>
-            <img src ={clas.image} alt = {clas.name}/>
+            <img width = "200px" height ="200px" src ={clas.image} alt = {clas.name}/>
             <p>{clas.desc}</p>
             <button className = "add-class" onClick = {handleClick}>Add Class</button>
-            <button className = "delete-character/class" onDeleteChar = {handleDeleteChar}>Delete Character/Class</button>
+            <button className = "delete-character/class" onClick = {handleDeleteChar}>Delete Character/Class</button>
             <form onSubmit = {handleBtnClick}>
-                <input onChange ={handleChange} type = "text" name = "name" value ={clas.charName}></input>
-                <button type = "submit"  value = "Submit" ></button>
+                <input onChange ={handleChange} type = "text" name = "name" value ={charName}/>
+                <button type = "submit"  value = "Submit" >Edit</button>
             </form>
         </div>
     )
