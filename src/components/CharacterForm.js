@@ -6,7 +6,7 @@ function CharacterForm({clas, onAddCharacter}){
     const [formData, setFormData] = useState({
 
         name:"",
-        image: "https://unsplash.com/photos/P8LZaU52NME",
+        image: "https://unsplash.com/photos/gXyptwjk9aw",
         desc: "",
         charName: ""
     })

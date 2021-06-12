@@ -17,20 +17,43 @@ function SheetContainer(){
     .then(setClas)
   },[]);
 
-  function handleAddClass(addedClass) {
-    const classAddToSheet = changeSheet.find(
-        (clas) => clas.id === addedClass.id
-    );
-    if (!classAddToSheet) {
-      setChangeSheet([...changeSheet, addedClass]);
+  function addClassToSheet(clas) {
+    
+    return clas.map(cla => {
+       return ({...cla, inCharacterSheet: false})
+    })
+   
     }
+    function handleAddClass(addedClass) {
+      const classAddToSheet = changeSheet.find(
+          (clas) => clas.id === addedClass.id
+      );
+      if (!classAddToSheet) {
+        setChangeSheet([...changeSheet, addedClass]);
+      }
+    }
+
+  function filterCharSheet(){
+    if (clas){
+      
+    return clas.filter(clas => clas.inCharacterSheet)
+  }
+    return []
   }
 
+  function toggleClass(clas){
+    
+    return {...clas, inCharacterSheet: !clas.inCharacterSheet}
+
+  }
+    
+  
   function handleRemoveClass(removeClass) {
     setChangeSheet((changeSheet) =>
       changeSheet.filter((clas) => clas.id !== removeClass.id)
     );
   }
+  
   
   function handleDeleteChar(id) {
     fetch(`http://localhost:3000/clas/${id}`, {
@@ -65,11 +88,14 @@ function SheetContainer(){
      return(
         <div className ="sheet-container">
             <Header clas = {clas}/>
-            <ClassCardBox clas = {clas} 
-              changeSheet={changeSheet}  
+            <ClassCardBox clas = {clas}
+            changeSheet = {changeSheet}  
               onAddClass={handleAddClass}  
               onDeleteChar={handleDeleteChar}/>
-            <CharacterSheet clas ={clas} 
+              <CharacterSheet clas = {filterCharSheet(clas)}
+              addClassToSheet = {addClassToSheet}
+              toggleClass = {toggleClass}
+              onAddClass = {handleAddClass}
               changeSheet = {changeSheet}
               onRemoveClass={handleRemoveClass}/>
             <CharacterForm clas = {clas} 
