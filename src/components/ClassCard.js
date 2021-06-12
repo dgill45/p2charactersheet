@@ -1,7 +1,7 @@
 import React from "react"
 
 
-function ClassCard({clas, onClick, onDeleteChar, setCharName, selectedClass} ){
+function ClassCard({clas, onClick, onDeleteChar, setCharName} ){
       
         
     function handleClick() {
@@ -26,7 +26,7 @@ function ClassCard({clas, onClick, onDeleteChar, setCharName, selectedClass} ){
             <button className = "add-class" onClick = {handleClick}>Add Class</button>
             <button className = "delete-character/class" onClick = {handleDeleteChar}>Delete Character/Class</button>
             <form onSubmit = {handleChange} >
-                <input onChange ={handleChange} type = "text" name = "name" value ={selectedClass.charName}/>
+                <input type = "text" name = "name" value ={clas.charName}/>
                 <button type = "submit"  value = "Submit" >Edit</button>
             </form>
         </div>

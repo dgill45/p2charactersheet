@@ -7,6 +7,7 @@ function Header(){
     const [addClassName, setAddClassName] = useState({})
 
     function handleUpdate(clas, e, id) {
+        setAddClassName(e.target.value)
 
         fetch(`http://localhost:3000/clas/${id}`, {
           method: "PATCH",
@@ -19,8 +20,7 @@ function Header(){
           .then((data) => {
           
             if (clas.name === data.name){
-            setAddClassName((addClassName.name) ={[e.target.name]: e.target.value,
-                    });
+            setAddClassName((addClassName.name));
             }else {
 
                 return setAddClassName(clas.name)

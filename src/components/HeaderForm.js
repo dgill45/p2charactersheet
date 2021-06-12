@@ -1,6 +1,6 @@
 import React from "react"
 
-function HeaderForm(e, addClassName, handleUpdate){
+function HeaderForm(addClassName, handleUpdate){
 
     
 
@@ -8,15 +8,13 @@ function HeaderForm(e, addClassName, handleUpdate){
         <form>
           <input
             type="text"
-            name={e.target.value}
             onChange={handleUpdate}
             value={addClassName.name}
           />
         <input
             type="text"
-            charName = {e.target.value}
             onChange={handleUpdate}
-            value={addClassName.name}
+            value={addClassName.charName}
           />
         <button type="submit">Submit</button>
         </form>
