@@ -1,9 +1,8 @@
-import React,{useState} from "react"
+import React from "react"
 
 
-function ClassCard({clas, onClick, onDeleteChar} ){
-
-    const [charName, setCharName] = useState("")
+function ClassCard({clas, onClick, onDeleteChar, setCharName, selectedClass} ){
+      
         
     function handleClick() {
           onClick(clas);
@@ -18,7 +17,6 @@ function ClassCard({clas, onClick, onDeleteChar} ){
     }
 
     
-
     return (
                 
         <div className="card" >
@@ -27,8 +25,8 @@ function ClassCard({clas, onClick, onDeleteChar} ){
             <p>{clas.desc}</p>
             <button className = "add-class" onClick = {handleClick}>Add Class</button>
             <button className = "delete-character/class" onClick = {handleDeleteChar}>Delete Character/Class</button>
-            <form onSubmit = {handleBtnClick}>
-                <input onChange ={handleChange} type = "text" name = "name" value ={charName}/>
+            <form onSubmit = {handleChange} >
+                <input onChange ={handleChange} type = "text" name = "name" value ={selectedClass.charName}/>
                 <button type = "submit"  value = "Submit" >Edit</button>
             </form>
         </div>

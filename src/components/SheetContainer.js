@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import CharacterSheet from "./CharacterSheet";
 import ClassCardBox from "./ClassCardBox";
 import CharacterForm from "./CharacterForm";
+import Header from "./Header";
 
 function SheetContainer(){
     const [clas, setClas] = useState([]);
     const [newClas, setNewClas] = useState([]);
     const [changeSheet, setChangeSheet] = useState([]);
+   
+    
     
   useEffect(() => {
     fetch("http://localhost:3000/clas")
@@ -53,38 +56,29 @@ function SheetContainer(){
         })
           .then((r) => r.json())
           .then((data) => {
-            setClas([...clas, data]);
+            setNewClas([...clas, data]);
           }) ;
-    
   }
-
-  function handleBtnClick(id, updateCharName) {
-
-    fetch(`http://localhost:3000/clas/${id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updateObj),
-    })
-      .then((r) => r.json())
-      .then((data) => {
-          const updatedClassList = clas.map(() => {
-            if (clas.id === data.id){
-              setNewClas((updateCharName))
-          }else {
-            return setClas(clas)
-          }
-      });
-    })
-  
+      
+    
+   
      return(
-        <div>
-            <ClassCardBox clas = {clas} changeSheet={changeSheet} onAddClass={handleAddClass} onDeleteChar={handleDeleteChar}/>
-            <CharacterSheet clas ={clas} changeSheet = {changeSheet} onRemoveClass={handleRemoveClass}/>
-            <CharacterForm clas = {clas} newClas = {newClas} onAddCharacter ={handleAddCharacter}  />
+        <div className ="sheet-container">
+            <Header clas = {clas}/>
+            <ClassCardBox clas = {clas} 
+              changeSheet={changeSheet}  
+              onAddClass={handleAddClass}  
+              onDeleteChar={handleDeleteChar}/>
+            <CharacterSheet clas ={clas} 
+              changeSheet = {changeSheet}
+              onRemoveClass={handleRemoveClass}/>
+            <CharacterForm clas = {clas} 
+              newClas = {newClas} 
+              onAddCharacter ={handleAddCharacter}  />
         </div>
+    
     )}
-}
 
-export default SheetContainer;
+
+
+  export default SheetContainer;
