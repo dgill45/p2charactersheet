@@ -10,11 +10,13 @@ function HeaderForm(addClassName, handleUpdate){
             type="text"
             onChange={handleUpdate}
             value={addClassName.name}
+            placeholder="Add a Class Name"
           />
         <input
             type="text"
             onChange={handleUpdate}
             value={addClassName.charName}
+            placeholder ="Name a character"
           />
         <button type="submit">Submit</button>
         </form>

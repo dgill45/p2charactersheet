@@ -9,6 +9,7 @@ function ClassCard({clas, onClick, onDeleteChar, setCharName} ){
         }
     
     function handleChange(e){
+        e.preventDefault()
         setCharName((e.target.value))
     }
 
@@ -23,7 +24,7 @@ function ClassCard({clas, onClick, onDeleteChar, setCharName} ){
             <h3>{clas.name}</h3>
             <img width = "200px" height ="200px" src ={clas.image} alt = {clas.name}/>
             <p>{clas.desc}</p>
-            <button className = "add-class" onClick = {handleClick}>Add Class</button>
+            <button className = "add-class" onClick = {handleClick}>Add Class to CharacterSheet</button>
             <button className = "delete-character/class" onClick = {handleDeleteChar}>Delete Character/Class</button>
             <form onSubmit = {handleChange} >
                 <input type = "text" name = "name" value ={clas.charName}/>
