@@ -1,20 +1,18 @@
 import React from "react"
 
-function HeaderForm(addClassName, handleUpdate){
+function HeaderForm(addClassName, handleAddCharacter, handleUpdate){
 
     
 
     return(
-        <form>
+        <form onSubmit = {handleUpdate} handleaddcharacter={handleAddCharacter}>
           <input
             type="text"
-            onChange={handleUpdate}
             value={addClassName.name}
             placeholder="Add a Class Name"
           />
         <input
             type="text"
-            onChange={handleUpdate}
             value={addClassName.charName}
             placeholder ="Name a character"
           />

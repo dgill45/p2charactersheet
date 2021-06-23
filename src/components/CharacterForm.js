@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 
 
-function CharacterForm({clas, onAddCharacter}){
+function CharacterForm({clas, onAddCharacter, addClassToSheet}){
     
     const [formData, setFormData] = useState({
 
@@ -35,7 +35,7 @@ function CharacterForm({clas, onAddCharacter}){
 
     return(
         <div className ="form-container">
-            <form onSubmit={handleSubmit} className ="add-Class">
+            <form onSubmit={handleSubmit} addclasstosheet= {addClassToSheet} className ="add-Class">
                 <h3>Create a New Character</h3>
                 <input type ="text" 
                     name = "charName" 

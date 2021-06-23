@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import HeaderForm from "./HeaderForm";
 
 
-function Header(){
+function Header(handleAddCharacter){
 
     const [addClassName, setAddClassName] = useState({})
 
@@ -31,7 +31,7 @@ function Header(){
     return(
         <div className ="header" >
             <h1> D and D Character Sheet</h1>
-            <HeaderForm addClassName= {addClassName} onChange={handleUpdate} />
+            <HeaderForm addClassName= {addClassName} onChange={handleUpdate} handleAddCharacter={handleAddCharacter}/>
         </div>
 
     )

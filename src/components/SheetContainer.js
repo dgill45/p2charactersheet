@@ -9,9 +9,7 @@ function SheetContainer(){
     const [newClas, setNewClas] = useState([]);
     const [changeSheet, setChangeSheet] = useState([]);
    
-    
-    
-  useEffect(() => {
+    useEffect(() => {
     fetch("http://localhost:3000/clas")
     .then((r) => r.json())
     .then(setClas)
@@ -24,6 +22,15 @@ function SheetContainer(){
     })
    
     }
+
+    function filterCharSheet(clas){
+      if (clas){
+        
+      return clas.filter((clas => clas.inCharacterSheet));
+    }else{
+      return []
+    }
+  }
     function handleAddClass(addedClass) {
       const classAddToSheet = changeSheet.find(
           (clas) => clas.id === addedClass.id
@@ -33,17 +40,10 @@ function SheetContainer(){
       }
     }
 
-  function filterCharSheet(){
-    if (clas){
-      
-    return clas.filter(clas => clas.inCharacterSheet)
-  }
-    return []
-  }
-
-  function toggleClass(clas){
+  
+  function toggleClass(){
     
-    return {...clas, inCharacterSheet: !clas.inCharacterSheet}
+    return {...changeSheet, inCharacterSheet: !clas.inCharacterSheet}
 
   }
     
@@ -87,19 +87,20 @@ function SheetContainer(){
    
      return(
         <div className ="sheet-container">
-            <Header clas = {clas}/>
+            <Header clas = {clas} handleAddCharacter={handleAddCharacter} />
             <ClassCardBox clas = {clas}
             changeSheet = {changeSheet}  
               onAddClass={handleAddClass}  
               onDeleteChar={handleDeleteChar}/>
               <CharacterSheet clas = {filterCharSheet(clas)}
-              addClassToSheet = {addClassToSheet}
-              toggleClass = {toggleClass}
+              addclasstosheet = {addClassToSheet}
+              toggleclass = {toggleClass}
               onAddClass = {handleAddClass}
               changeSheet = {changeSheet}
               onRemoveClass={handleRemoveClass}/>
             <CharacterForm clas = {clas} 
               newClas = {newClas} 
+              addclasstosheet = {addClassToSheet}
               onAddCharacter ={handleAddCharacter}  />
         </div>
     
